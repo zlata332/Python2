@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>О нас — BookVerse</title>
+    <link rel="stylesheet" href="{% static 'css/header_and_foother.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Подключаем общий хедер -->
+    {% include 'layouts/header.html' %}
+
+    <main class="about-main-container" style="flex: 1; max-width: 900px; width: 100%; margin: 40px auto; padding: 0 20px; box-sizing: border-box;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h1 style="font-size: 2.2rem; font-weight: 700; color: #f3f4f6; margin-bottom: 10px;">
+                <i class="fa-solid fa-book-bookmark" style="color: #f59e0b;"></i> BookVerse
+            </h1>
+            <p style="color: #9ca3af; font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.5;">
+                Ваш проводник в мире литературы, цифровой каталог и уютное пространство для книжных энтузиастов.
+            </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 40px;">
+            <div style="background: rgba(31, 41, 55, 0.75); backdrop-filter: blur(10px); border: 1px solid rgba(245, 158, 11, 0.15); border-radius: 12px; padding: 30px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);">
+                <h2 style="font-size: 1.3rem; color: #f3f4f6; margin-top: 0; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-circle-info" style="color: #f59e0b;"></i> О проекте
+                </h2>
+                <p style="color: #9ca3af; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                    Мы создаем современную цифровую библиотеку, которая объединяет классические произведения и удобные технологии управления книжным каталогом. Проект разработан в рамках учебного курса IST524.
+                </p>
+            </div>
+
+            <div style="background: rgba(31, 41, 55, 0.75); backdrop-filter: blur(10px); border: 1px solid rgba(245, 158, 11, 0.15); border-radius: 12px; padding: 30px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);">
+                <h2 style="font-size: 1.3rem; color: #f3f4f6; margin-top: 0; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-bullseye" style="color: #f59e0b;"></i> Наша миссия
+                </h2>
+                <p style="color: #9ca3af; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                    Сделать литературу доступной для каждого читателя, предоставив удобный интерфейс поиска и каталог изданий.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подключаем общий футер -->
+    {% include 'layouts/footer.html' %}
+
+</body>
+</html>

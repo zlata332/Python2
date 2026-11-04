@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Контакты — BookVerse</title>
+    <link rel="stylesheet" href="{% static 'css/header_and_foother.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Подключаем общий хедер -->
+    {% include 'layouts/header.html' %}
+
+    <main class="about-main-container">
+        
+        <div class="about-hero">
+            <h1 class="about-title">
+                <i class="fa-solid fa-address-book"></i> Контакты
+            </h1>
+            <p class="about-subtitle">
+                Свяжитесь с нами или найдите нас на карте города.
+            </p>
+        </div>
+
+        <div class="about-grid">
+            <!-- Блок с контактной информацией -->
+            <div class="about-card">
+                <h2><i class="fa-solid fa-id-card" style="color: var(--accent-color, #f59e0b);"></i> Наша информация</h2>
+                <ul class="about-contact-list">
+                    <li>
+                        <i class="fa-solid fa-building"></i>
+                        <div>
+                            <span class="contact-label">Организация:</span>
+                            <span class="contact-value">Библиотечный центр «BookVerse»</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone-volume"></i>
+                        <div>
+                            <span class="contact-label">Телефон:</span>
+                            <span class="contact-value">+996 (555) 123-456</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <span class="contact-label">Email:</span>
+                            <span class="contact-value">support@bookverse.kg</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-clock"></i>
+                        <div>
+                            <span class="contact-label">Время работы:</span>
+                            <span class="contact-value">Пн – Сб: с 09:00 до 19:00 (ВС — выходной)</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <span class="contact-label">Адрес:</span>
+                            <span class="contact-value">г. Бишкек, учебная аудитория IST524</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Блок с профессиональной картой -->
+            <div class="about-card">
+                <h2><i class="fa-solid fa-map-location-dot"></i> Как нас найти</h2>
+                <p style="color: var(--text-muted, #9ca3af); font-size: 0.9rem; margin-bottom: 15px; line-height: 1.5;">
+                    Точное расположение нашего центра в Бишкеке:
+                </p>
+                <!-- Надежный iframe карты -->
+                <div style="width: 100%; height: 320px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(245, 158, 11, 0.2);">
+                    <iframe 
+                        src="https://yandex.ru/map-widget/v1/?um=constructor%3A7a19541a54b321c17944d180860268593c6dfd6a537f81b17b2b73c4f74d9e2a&amp;source=constructor&amp;z=15&amp;ol=lat&amp;ll=74.5698,42.8746" 
+                        width="100%" 
+                        height="320" 
+                        frameborder="0" 
+                        style="border:0;" 
+                        allowfullscreen="true">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Подключаем общий футер -->
+    {% include 'layouts/footer.html' %}
+
+</body>
+</html>

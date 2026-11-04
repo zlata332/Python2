@@ -1,0 +1,33 @@
+
+{% load static %}
+{% include 'layouts/header.html' %}
+<link rel="stylesheet" href="{% static 'css/finance.css' %}">
+
+<h1>Список финансовых операций</h1>
+
+<a href="{% url 'create' %}">+ Добавить операцию</a>
+
+<ul>
+    {% for i in finance %}
+    <li>
+        <h2>{{ i.title }}</h2>
+
+        {% if i.description %}
+            <p>{{ i.description }}</p>
+        {% else %}
+            <p>Описание не указано!</p>
+        {% endif %}
+
+        <p>Статус: {{ i.cheking }}</p>
+        <p>Дата создания: {{ i.created_at }}</p>
+        <p>Дата изменения: {{ i.update_at }}</p>
+
+        <a href="/finance_list/{{ i.id }}/update/">Изменить</a>
+        <a href="/finance_list/{{ i.id }}/delete/">Удалить</a>
+    </li>
+    {% empty %}
+        <p>Пока нет финансовых операций.</p>
+    {% endfor %}
+</ul>
+
+{% include 'layouts/footer.html' %}

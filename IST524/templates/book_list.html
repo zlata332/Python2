@@ -1,0 +1,44 @@
+{% load static %}
+{% include 'layouts/header.html' %}
+<main class="content-container">
+        <h1 style="text-align: center; color: #f8fafc; font-size: 2.2rem; font-weight: 700; margin-bottom: 10px;">
+            <i class="fa-solid fa-book-open-reader" style="color: #f59e0b;"></i> Каталог библиотеки
+        </h1>
+        <p style="text-align: center; color: #94a3b8; margin-bottom: 40px;">Все книги надежно сохранены в вашей базе данных</p>
+        
+        <ul class="books-grid">
+            {% for i in books %}
+            <li class="book-card">
+                <!-- Картинка с фиксированными пропорциями -->
+                <div class="book-image-wrapper">
+                    {% if i.image %}
+                        <img src="{{ i.image.url }}" alt="{{ i.title }}">
+                    {% else %}
+                        <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #64748b;">
+                            <i class="fa-solid fa-image" style="font-size: 2rem;"></i>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Текстовая часть -->
+                <div class="book-info">
+                    <h2 class="book-title">{{ i.title }}</h2>
+                    <p class="book-description">{{ i.description|truncatechars:120 }}</p>
+
+                    <!-- Мета-данные -->
+                    <div class="book-meta">
+                        <span><i class="fa-solid fa-feather"></i> {{ i.author }}</span>
+                        <span><i class="fa-regular fa-calendar"></i> {{ i.created_at|date:"d.m.Y" }}</span>
+                    </div>
+                </div>
+            </li>
+            {% empty %}
+            <li class="no-books">
+                <i class="fa-solid fa-box-open"></i>
+                <p style="font-size: 1.1rem; margin: 0;">Книг пока нет в базе данных.</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </main>
+{% load static %}
+{% include 'layouts/footer.html' %}

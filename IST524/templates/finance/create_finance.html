@@ -1,0 +1,19 @@
+
+{% load static %}
+{% include 'layouts/header.html' %}
+<link rel="stylesheet" href="{% static 'css/finance.css' %}">
+
+
+<h1>Добавить финансовую операцию</h1>
+
+<form action="{% url 'create' %}" method="POST">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">Добавить</button>
+</form>
+
+<a href="{% url 'finance_list' %}">Назад к списку</a>
+
+{% include 'layouts/footer.html' %}

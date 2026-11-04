@@ -1,0 +1,47 @@
+{% include 'layouts/header.html' %}
+
+<main class="tours-container">
+    <article class="tour-card">
+        <div class="tour-card-top"></div>
+
+        <div class="tour-info">
+            <span class="tour-category">
+                {{ tour.category|default:"Без категории" }}
+            </span>
+
+            <h1 class="tour-title">{{ tour.title }}</h1>
+
+            <div class="tour-details">
+                <div class="tour-detail">
+                    <strong>Руководитель:</strong>
+                    {{ tour.leader }}
+                </div>
+
+                <div class="tour-detail">
+                    <strong>Дата создания:</strong>
+                    {{ tour.register_date|date:"d.m.Y" }}
+                </div>
+
+                <div class="tour-detail">
+                    <strong>Участников:</strong>
+                    {{ tour.participants.count }}
+                </div>
+            </div>
+
+            <h3>Комментарии</h3>
+
+            {% for comment in tour.comments.all %}
+                <p>{{ comment.comment }}</p>
+                <small>{{ comment.created_at|date:"d.m.Y" }}</small>
+            {% empty %}
+                <p>Комментариев пока нет.</p>
+            {% endfor %}
+
+            <a href="{% url 'tour_list' %}" class="tour-button">
+                Назад к турам
+            </a>
+        </div>
+    </article>
+</main>
+
+{% include 'layouts/footer.html' %}

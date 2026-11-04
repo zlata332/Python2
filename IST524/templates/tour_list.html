@@ -1,0 +1,50 @@
+
+{% load static %}
+{% include 'layouts/header.html' %}
+
+<link rel="stylesheet" href="{% static 'css/tour.css' %}">
+
+<div class="container">
+    <h1 class="page-title">Наши туры</h1>
+
+    <div class="tour-list">
+        {% for i in tour_list %}
+        <div class="tour-card">
+
+            <div class="tour-card-header">
+                <span class="tour-category">
+                    {{ i.category|default:"Без категории" }}
+                </span>
+                <span class="tour-date">
+                    {{ i.register_date|date:"d.m.Y" }}
+                </span>
+            </div>
+
+            <h2 class="tour-title">{{ i.title }}</h2>
+
+            <p class="tour-leader">
+                <strong>Руководитель:</strong> {{ i.leader }}
+            </p>
+
+            <div class="tour-stats">
+                <span>
+                    👥 Участников: {{ i.participants.count }}
+                </span>
+                <span>
+                    💬 Комментариев: {{ i.comments.count }}
+                </span>
+            </div>
+
+            <a href="{% url 'tour_detail' i.id %}" class="tour-button">
+                Подробнее
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+        {% empty %}
+        <p class="empty-message">Пока туров нет.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% include 'layouts/footer.html' %}

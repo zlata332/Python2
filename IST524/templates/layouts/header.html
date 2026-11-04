@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список книг</title>
+    <link rel="stylesheet" href="/static/css/header_and_footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/about_me.css">
+    
+</head>
+<body>
+
+ 
+<header class="book-header">
+    <div class="header-container">
+        <!-- Логотип -->
+        <a href="{% url 'book_list' %}" class="logo">
+            <i class="fa-solid fa-book-bookmark"></i>
+            <span>BookVerse</span>
+        </a>
+
+        <!-- Навигация -->
+        <nav class="nav-menu">
+            <ul>
+            <li><a href="{% url 'book_list' %}" class="active"><i class="fa-solid fa-house"></i> Главная</a></li>
+            <li><a href="{% url 'about_me' %}"><i class="fa-solid fa-circle-info"></i> О нас</a></li>
+            <li><a href="{% url 'contacts' %}"><i class="fa-solid fa-envelope"></i> Контакты</a></li>
+            <li><a href="{% url 'finance_list' %}"><i class="fa-solid fa-spider"></i> Парсинг</a></li>
+            <li><a href="{% url 'tour_list' %}"><i class="fa-solid fa-database"></i> БД (Отношения)</a></li>
+            </ul>
+        </nav>
+
+        <!-- Кнопки действий -->
+        <div class="header-actions">
+            <a href="#" class="btn-login"><i class="fa-solid fa-right-to-bracket"></i> Вход</a>
+            <a href="#" class="btn-register"><i class="fa-solid fa-user-plus"></i> Регистрация</a>
+        </div>
+    </div>
+</header>
+
