@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'core',
     'tour',
     'finance',
+    'user',
+    'captcha',
 ]
 
 MIDDLEWARE = [

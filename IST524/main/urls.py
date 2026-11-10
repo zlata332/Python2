@@ -9,6 +9,8 @@ urlpatterns = [
     path('', include('core.urls')),
     path('', include('tour.urls')),
     path('', include('finance.urls')),
+    path('', include('user.urls')),
+    path('captcha/', include('captcha.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

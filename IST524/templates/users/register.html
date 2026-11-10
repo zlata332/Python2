@@ -1,0 +1,67 @@
+
+{% load static %}
+{% include 'layouts/header.html' %}
+
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+
+<div class="auth-main-container">
+
+    <div class="auth-hero">
+        <h1 class="auth-title">
+            <i class="fa-solid fa-user-plus"></i>
+            Регистрация
+        </h1>
+        <p class="auth-subtitle">Создайте новый аккаунт</p>
+    </div>
+
+    <div class="auth-card">
+
+        {% if error %}
+            <div class="auth-error">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST" class="auth-form">
+            {% csrf_token %}
+
+            <input type="text" name="username"
+                   placeholder="Логин" required>
+
+            <input type="text" name="first_name"
+                   placeholder="Имя" required>
+
+            <input type="text" name="last_name"
+                   placeholder="Фамилия" required>
+
+            <input type="email" name="email"
+                   placeholder="Email" required>
+
+            <input type="tel" name="phone"
+                   placeholder="Телефон" required>
+
+            <input type="date" name="birth_date" required>
+
+            <input type="password" name="password1"
+                   placeholder="Пароль" required>
+
+            <input type="password" name="password2"
+                   placeholder="Повторите пароль" required>
+
+            <div class="captcha-container">
+                <label>Подтвердите, что вы не робот:</label>
+                {{ captcha_form.captcha }}
+            </div>
+
+            <button type="submit" class="auth-button">
+                Зарегистрироваться
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            Уже есть аккаунт?
+            <a href="{% url 'login' %}">Войти</a>
+        </div>
+
+    </div>
+</div>
+
+{% include 'layouts/footer.html' %}
