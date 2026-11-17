@@ -1,6 +1,6 @@
-
 {% load static %}
 {% include 'layouts/header.html' %}
+
 <link rel="stylesheet" href="{% static 'css/finance.css' %}">
 
 <h1>Список финансовых операций</h1>
@@ -9,25 +9,58 @@
 
 <ul>
     {% for i in finance %}
-    <li>
-        <h2>{{ i.title }}</h2>
+        <li>
+            <h2>{{ i.title }}</h2>
 
-        {% if i.description %}
-            <p>{{ i.description }}</p>
-        {% else %}
-            <p>Описание не указано!</p>
-        {% endif %}
+            {% if i.description %}
+                <p>{{ i.description }}</p>
+            {% else %}
+                <p>Описание не указано!</p>
+            {% endif %}
 
-        <p>Статус: {{ i.cheking }}</p>
-        <p>Дата создания: {{ i.created_at }}</p>
-        <p>Дата изменения: {{ i.update_at }}</p>
+            <p>Статус: {{ i.cheking }}</p>
 
-        <a href="/finance_list/{{ i.id }}/update/">Изменить</a>
-        <a href="/finance_list/{{ i.id }}/delete/">Удалить</a>
-    </li>
+            <p>Дата создания: {{ i.created_at }}</p>
+
+            <p>Дата изменения: {{ i.updated_at }}</p>
+
+            <a href="/finance_list/{{ i.id }}/update/">
+                Изменить
+            </a>
+
+            <a href="/finance_list/{{ i.id }}/delete/">
+                Удалить
+            </a>
+        </li>
+
     {% empty %}
         <p>Пока нет финансовых операций.</p>
     {% endfor %}
 </ul>
+
+
+<div class="pagination">
+
+    {% if page_obj.has_previous %}
+        <a href="?page=1">Первая</a>
+        <a href="?page={{ page_obj.previous_page_number }}">Назад</a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+
+        {% if page_obj.number == num %}
+            <span class="current-page">{{ num }}</span>
+        {% else %}
+            <a href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Вперед</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>
+    {% endif %}
+
+</div>
 
 {% include 'layouts/footer.html' %}

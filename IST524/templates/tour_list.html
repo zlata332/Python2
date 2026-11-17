@@ -5,46 +5,151 @@
 <link rel="stylesheet" href="{% static 'css/tour.css' %}">
 
 <div class="container">
+
+    <!-- Заголовок -->
     <h1 class="page-title">Наши туры</h1>
 
+    <!-- Поиск туров -->
+    <div class="tour-search-wrapper">
+
+        <form method="GET" action="" class="tour-search">
+
+            <div class="search-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Найти интересный тур..."
+                value="{{ search_query }}"
+                autocomplete="off"
+            >
+
+            {% if search_query %}
+                <a
+                    href="{% url 'tour_list' %}"
+                    class="search-clear"
+                    title="Очистить поиск"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            {% endif %}
+
+            <button type="submit">
+                Найти тур
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+        </form>
+
+        <p class="search-hint">
+            <i class="fa-solid fa-lightbulb"></i>
+            Ищите по названию, категории или руководителю
+        </p>
+
+    </div>
+
+    <!-- Результаты поиска -->
     <div class="tour-list">
+
         {% for i in tour_list %}
+
         <div class="tour-card">
 
+            <!-- Верх карточки -->
             <div class="tour-card-header">
+
                 <span class="tour-category">
                     {{ i.category|default:"Без категории" }}
                 </span>
+
                 <span class="tour-date">
+                    <i class="fa-regular fa-calendar"></i>
                     {{ i.register_date|date:"d.m.Y" }}
                 </span>
+
             </div>
 
-            <h2 class="tour-title">{{ i.title }}</h2>
+            <!-- Название тура -->
+            <h2 class="tour-title">
+                {{ i.title }}
+            </h2>
 
+            <!-- Руководитель -->
             <p class="tour-leader">
-                <strong>Руководитель:</strong> {{ i.leader }}
+                <strong>
+                    <i class="fa-solid fa-user"></i>
+                    Руководитель:
+                </strong>
+                {{ i.leader }}
             </p>
 
+            <!-- Статистика -->
             <div class="tour-stats">
+
                 <span>
-                    👥 Участников: {{ i.participants.count }}
+                    <i class="fa-solid fa-users"></i>
+                    Участников: {{ i.participants.count }}
                 </span>
+
                 <span>
-                    💬 Комментариев: {{ i.comments.count }}
+                    <i class="fa-solid fa-comments"></i>
+                    Комментариев: {{ i.comments.count }}
                 </span>
+
             </div>
 
-            <a href="{% url 'tour_detail' i.id %}" class="tour-button">
+            <!-- Кнопка подробнее -->
+            <a
+                href="{% url 'tour_detail' i.id %}"
+                class="tour-button"
+            >
                 Подробнее
                 <i class="fa-solid fa-arrow-right"></i>
             </a>
 
         </div>
+
         {% empty %}
-        <p class="empty-message">Пока туров нет.</p>
+
+        <!-- Если ничего не найдено -->
+        <div class="empty-message">
+
+            {% if search_query %}
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <h3>Ничего не найдено</h3>
+
+                <p>
+                    По запросу «{{ search_query }}»
+                    туров не найдено.
+                </p>
+
+                <a href="{% url 'tour_list' %}">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    Показать все туры
+                </a>
+
+            {% else %}
+
+                <i class="fa-solid fa-mountain-sun"></i>
+
+                <h3>Пока туров нет</h3>
+
+                <p>
+                    Скоро здесь появятся интересные путешествия!
+                </p>
+
+            {% endif %}
+
+        </div>
+
         {% endfor %}
+
     </div>
+
 </div>
 
 {% include 'layouts/footer.html' %}

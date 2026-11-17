@@ -1,6 +1,8 @@
+
 from django.contrib import admin
-from . import models
+from .models import Book
 
-admin.site.register(models.Book)
 
-# Register your models here.
+@admin.register(Book)
+class BookAdmin(admin.ModelAdmin):
+    exclude = ('views',)

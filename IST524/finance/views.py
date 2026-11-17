@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from finance.forms import FinanceForm
 from finance.models import Finance
 from django.http import HttpResponse
-
+from django.core.paginator import Paginator
 
 # Добавление операции
 def created_finance_view(request):
@@ -21,16 +21,22 @@ def created_finance_view(request):
     })
 
 
-# Список операций
+
 def read_finance_view(request):
     finance = Finance.objects.all().order_by("-id")
 
+    paginator = Paginator(finance, 2)
+
+    page_number = request.GET.get('page')
+
+    page_obj = paginator.get_page(page_number)
+
     return render(request, 'finance/finance_list.html', {
-        'finance': finance
+        'finance': page_obj,
+        'page_obj': page_obj
     })
 
 
-# Изменение операции
 def update_finance_view(request, id):
     finance_id = get_object_or_404(Finance, id=id)
 
@@ -49,7 +55,6 @@ def update_finance_view(request, id):
     })
 
 
-# Удаление операции
 def delete_finance_view(request, id):
     finance_id = get_object_or_404(Finance, id=id)
 

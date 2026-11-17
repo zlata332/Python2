@@ -8,6 +8,9 @@ class Book(models.Model):
   author = models.CharField(max_length=100)
   created_at = models.DateTimeField(auto_now_add=True)
 
+  views = models.PositiveIntegerField(default=0)
+
+
   def __str__(self):
     return f"{self.title} - {self.created_at}"
 

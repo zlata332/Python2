@@ -1,0 +1,107 @@
+
+{% load static %}
+{% include 'layouts/header.html' %}
+
+<main class="content-container">
+
+    <div class="book-detail" style="
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 30px;
+        background: #1e293b;
+        border-radius: 15px;
+        color: #f8fafc;
+    ">
+
+        <!-- Название -->
+        <h1 style="text-align: center; margin-bottom: 25px;">
+            {{ book.title }}
+        </h1>
+
+        <!-- Изображение -->
+        {% if book.image %}
+
+            <div style="text-align: center; margin-bottom: 25px;">
+
+                <img
+                    src="{{ book.image.url }}"
+                    alt="{{ book.title }}"
+                    style="
+                        max-width: 100%;
+                        max-height: 450px;
+                        border-radius: 12px;
+                        object-fit: contain;
+                    "
+                >
+
+            </div>
+
+        {% endif %}
+
+        <!-- Автор -->
+        <p style="font-size: 17px; color: #cbd5e1;">
+            <i class="fa-solid fa-feather" style="color: #f59e0b;"></i>
+            Автор: {{ book.author }}
+        </p>
+
+        <!-- Дата -->
+        <p style="font-size: 15px; color: #94a3b8;">
+            <i class="fa-regular fa-calendar"></i>
+            Дата добавления: {{ book.created_at|date:"d.m.Y" }}
+        </p>
+
+        <!-- Описание -->
+        <h2 style="margin-top: 30px; color: #f59e0b;">
+            Описание книги
+        </h2>
+
+        <p style="
+            line-height: 1.8;
+            color: #cbd5e1;
+            font-size: 16px;
+        ">
+            {{ book.description }}
+        </p>
+
+        <!-- Количество просмотров -->
+        <div style="
+            margin-top: 30px;
+            padding: 15px;
+            background: #334155;
+            border-radius: 10px;
+            text-align: center;
+            color: #f59e0b;
+            font-size: 18px;
+        ">
+
+            <i class="fa-solid fa-eye"></i>
+
+            Просмотров: {{ book.views }}
+
+        </div>
+
+        <!-- Назад -->
+        <div style="text-align: center; margin-top: 30px;">
+
+            <a href="{% url 'book_list' %}"
+               style="
+                    display: inline-block;
+                    padding: 12px 25px;
+                    background: #f59e0b;
+                    color: #0f172a;
+                    text-decoration: none;
+                    border-radius: 8px;
+                    font-weight: bold;
+               ">
+
+                ← Назад в каталог
+
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+{% include 'layouts/footer.html' %}
